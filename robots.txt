@@ -1,0 +1,14 @@
+ (cd "$(git rev-parse --show-toplevel)" && git apply --3way <<'EOF' 
+diff --git a/robots.txt b/robots.txt
+new file mode 100644
+index 0000000000000000000000000000000000000000..afc67f1a021b1c04fc59a6f4fa0fc127dfb1cd23
+--- /dev/null
++++ b/robots.txt
+@@ -0,0 +1,4 @@
++User-agent: *
++Allow: /
++
++Sitemap: https://astana.ayaz/sitemap.xml
+ 
+EOF
+)
