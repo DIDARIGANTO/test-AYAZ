@@ -1,0 +1,184 @@
+ (cd "$(git rev-parse --show-toplevel)" && git apply --3way <<'EOF' 
+diff --git a/styles.css b/styles.css
+new file mode 100644
+index 0000000000000000000000000000000000000000..dd87624446165bda55072fbd71ec5f9cc4eb2a12
+--- /dev/null
++++ b/styles.css
+@@ -0,0 +1,174 @@
++:root {
++  --bg: #edf2ff;
++  --card: #ffffffc7;
++  --text: #0d2f73;
++  --text-dark: #182642;
++  --accent: #2979ff;
++  --accent-2: #6bc8ff;
++  --radius: 24px;
++}
++
++* { box-sizing: border-box; }
++html { scroll-behavior: smooth; }
++body {
++  margin: 0;
++  font-family: "Inter", "Segoe UI", sans-serif;
++  background: radial-gradient(circle at 20% 0%, #f8fbff, var(--bg));
++  color: var(--text-dark);
++}
++
++.bg-blur {
++  position: fixed;
++  inset: -30% -10% auto;
++  height: 60vh;
++  background: radial-gradient(circle, #95dcff66, transparent 60%);
++  pointer-events: none;
++  z-index: -1;
++}
++
++main, .topbar, .footer { width: min(1120px, 92vw); margin: 0 auto; }
++main { padding: 40px 0 72px; display: grid; gap: 32px; }
++
++.glass {
++  background: var(--card);
++  backdrop-filter: blur(8px);
++  border: 1px solid #ffffff;
++  border-radius: var(--radius);
++  box-shadow: 0 10px 30px #1d4fa214;
++}
++
++.topbar {
++  margin-top: 18px;
++  display: flex;
++  align-items: center;
++  justify-content: space-between;
++  padding: 12px 18px;
++  position: sticky;
++  top: 12px;
++  z-index: 4;
++}
++.logo { color: var(--text); text-decoration: none; font-weight: 800; font-size: 1.25rem; }
++.logo span { color: var(--accent); }
++.topbar nav { display: flex; gap: 16px; }
++.topbar nav a { color: #1a458f; text-decoration: none; font-weight: 600; }
++
++.hero {
++  padding: 42px;
++  display: grid;
++  grid-template-columns: 1.2fr 1fr;
++  gap: 16px;
++  overflow: hidden;
++}
++.chip {
++  display: inline-block;
++  background: linear-gradient(90deg, var(--accent), #3d9eff);
++  color: #fff;
++  border-radius: 999px;
++  padding: 8px 14px;
++  font-weight: 700;
++}
++h1 { font-size: clamp(2rem, 5vw, 3.25rem); color: var(--text); margin: 12px 0; line-height: 1.1; }
++h2 { font-size: clamp(1.6rem, 4vw, 2.4rem); color: var(--text); margin: 0 0 16px; }
++h3 { color: var(--text); margin: 0 0 8px; }
++.lead { font-size: 1.1rem; max-width: 55ch; }
++.hero-actions { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 18px; }
++
++.btn {
++  display: inline-flex;
++  align-items: center;
++  justify-content: center;
++  gap: 8px;
++  border-radius: 14px;
++  padding: 12px 16px;
++  background: linear-gradient(120deg, var(--accent), #4ab4ff);
++  color: #fff;
++  text-decoration: none;
++  border: none;
++  font-weight: 700;
++  transition: transform .25s ease, box-shadow .25s ease;
++}
++.btn:hover { transform: translateY(-2px); box-shadow: 0 14px 24px #2e79ff38; }
++.btn-small { padding: 10px 14px; font-size: .95rem; }
++.btn-outline {
++  background: #fff;
++  color: var(--accent);
++  border: 1px solid #a8cdfb;
++}
++
++.hero-art {
++  min-height: 260px;
++  position: relative;
++  display: grid;
++  place-items: center;
++}
++.ac-unit {
++  width: 88%;
++  aspect-ratio: 16/8;
++  border-radius: 24px;
++  background: linear-gradient(180deg, #fff, #dce8f8);
++  box-shadow: inset 0 -14px 28px #bad4ff55;
++}
++.ac-unit::after {
++  content: "❄";
++  position: absolute;
++  left: 14%;
++  top: 12%;
++  color: #4a9cff;
++  font-size: 2.2rem;
++}
++.cold-wave {
++  position: absolute;
++  bottom: 10%;
++  width: 70%;
++  height: 45%;
++  border-radius: 50%;
++  filter: blur(8px);
++  background: radial-gradient(circle, #77d4ff7b 10%, transparent 65%);
++  animation: flow 3.8s linear infinite;
++}
++.w2 { animation-delay: .8s; }
++.w3 { animation-delay: 1.6s; }
++@keyframes flow {
++  0% { transform: translateY(0) scale(.8); opacity: 0; }
++  35% { opacity: .55; }
++  100% { transform: translateY(56px) scale(1.15); opacity: 0; }
++}
++
++.grid { display: grid; gap: 16px; }
++.cards { grid-template-columns: repeat(3, minmax(220px, 1fr)); }
++.card { padding: 24px; min-height: 210px; display: grid; align-content: start; }
++.card b { margin-top: 10px; color: var(--text); background: #e9f3ff; border-radius: 12px; width: fit-content; padding: 8px 12px; }
++
++.split { padding: 28px; display: grid; grid-template-columns: 2fr 1fr; gap: 24px; }
++.split ol { padding-left: 20px; display: grid; gap: 8px; }
++.split aside { background: #eaf4ff; padding: 18px; border-radius: 18px; align-self: start; }
++
++.reasons { grid-template-columns: repeat(2, minmax(220px, 1fr)); }
++.reasons > div { padding: 20px; }
++
++.faq { padding: 28px; }
++.faq details {
++  background: #f8fbff;
++  border: 1px solid #d6e9ff;
++  border-radius: 14px;
++  padding: 14px;
++  margin-bottom: 10px;
++}
++.faq summary { cursor: pointer; color: var(--text); font-weight: 700; }
++
++.footer { padding: 8px 0 28px; color: #345; }
++.footer a { color: var(--accent); }
++
++.reveal {
++  opacity: 0;
++  transform: translateY(14px);
++  transition: opacity .7s ease, transform .7s ease;
++}
++.reveal.active { opacity: 1; transform: translateY(0); }
++
++@media (max-width: 900px) {
++  .topbar nav { display: none; }
++  .hero { grid-template-columns: 1fr; padding: 24px; }
++  .cards, .reasons { grid-template-columns: 1fr; }
++  .split { grid-template-columns: 1fr; }
++}
+ 
+EOF
+)
