@@ -1,0 +1,18 @@
+ (cd "$(git rev-parse --show-toplevel)" && git apply --3way <<'EOF' 
+diff --git a/sitemap.xml b/sitemap.xml
+new file mode 100644
+index 0000000000000000000000000000000000000000..e57da3ad9290c4079f854b9b872f58ca8fc08487
+--- /dev/null
++++ b/sitemap.xml
+@@ -0,0 +1,8 @@
++<?xml version="1.0" encoding="UTF-8"?>
++<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
++  <url>
++    <loc>https://astana.ayaz/</loc>
++    <changefreq>weekly</changefreq>
++    <priority>1.0</priority>
++  </url>
++</urlset>
+ 
+EOF
+)
